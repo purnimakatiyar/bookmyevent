@@ -1,6 +1,6 @@
 # bookmyevent
 Book My Event 🎉 - Console-Based Event Management
-Book My Event is a console-based application designed to simplify event management for administrators, event managers, and customers. This interactive platform allows users to explore, book, and manage events effortlessly. Whether you're overseeing the platform, managing events, or booking tickets, this application caters to your needs.
+It is a console-based application designed to simplify event management for administrators, event managers, and customers. This interactive platform allows users to explore, book, and manage events effortlessly. Whether you're overseeing the platform, managing events, or booking tickets, this application caters to your needs.
 
 Authentication 🔐
 Sign In:
