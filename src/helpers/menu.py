@@ -1,13 +1,13 @@
 from helpers.input import Input
 from controllers.event import Event
 from settings.config import constants, menu, prompts
-
+from utils import logs
 
 class Menu:
     
     def navigate_check_role(self, details):
         if details[1] == constants["ADMIN"]:
-            self.admin_menu()
+            self.admin_menu(details[0])
             return
         elif details[1] == constants["CUSTOMER"]:
             self.customer_menu(details[0]) 
@@ -31,12 +31,13 @@ class Menu:
                 user_role = constants["CUSTOMER"]
                 Input().signup_input(user_role)
             elif choice == constants["THREE"]:
+                logs.exit_app()
                 break
             else:
                 print(prompts["WRONG_INPUT"])
             
     
-    def admin_menu(self):
+    def admin_menu(self, username):
         while True:
             print(menu["ADMIN_MENU"])
             choice = input()
@@ -46,6 +47,10 @@ class Menu:
             elif choice == constants["TWO"]:
                 Input().remove_manager_input()
             elif choice == constants["THREE"]:
+                self.update_account_menu(username)
+            elif choice == constants["FOUR"]:
+                self.customer_menu(username)
+            elif choice == constants["FIVE"]:
                 break
             else:
                 print(prompts["WRONG_INPUT"])
@@ -64,6 +69,8 @@ class Menu:
             elif choice == constants["FOUR"]:
                 self.update_event_menu(username)
             elif choice == constants["FIVE"]:
+                self.update_account_menu(username)
+            elif choice == constants["SIX"]:
                 break
             else:
                 print(prompts["WRONG_INPUT"])
@@ -76,7 +83,14 @@ class Menu:
             Input().update_event_input(user, ch)
         else:
             print(prompts["WRONG_INPUT"])
-
+            
+    def update_account_menu(self, user):
+        print(menu["UPDATE_ACCOUNT"])
+        ch = input()
+        if ch in constants.values():
+            Input().update_account_input(user, ch)
+        else:
+            print(prompts["WRONG_INPUT"])
               
     def customer_menu(self, username):
         while True:
@@ -95,6 +109,8 @@ class Menu:
             elif choice == constants["SIX"]:
                 Input().view_booked_event_input(username)
             elif choice == constants["SEVEN"]:
+                self.update_account_menu(username)
+            elif choice == constants["EIGHT"]:
                 break
             else:
                 print(prompts["WRONG_INPUT"])

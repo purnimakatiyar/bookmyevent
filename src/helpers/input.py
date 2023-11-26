@@ -1,7 +1,7 @@
 from settings.config import prompts, constants
 from controllers.user import User
 from controllers.authentication import Authenticate
-from helpers.validators import is_valid_username, is_valid_password, is_valid_name, is_valid_phone, validate_event_name, validate_event_date, validate_event_price, validate_event_tickets, check_valid_password
+from helpers.validators import is_valid_username, is_valid_name, is_valid_phone, validate_event_name, validate_event_date, validate_event_price, validate_event_tickets, check_valid_password
 from dateutil import parser
 from controllers.event import Event
 from controllers.booked_events import BookedEvents
@@ -131,3 +131,23 @@ class Input:
                                new_event_rating, new_event_price, new_event_category)
         else:
             print(prompts["WRONG_INPUT"])
+            
+            
+    def update_account_input(self, username, choice, 
+                       new_password=None, new_name=None, new_phone= None):
+        user = User(user_id = User().get_user_id(username),)
+
+        if choice in constants.values():
+            if choice == constants["ONE"] and new_password is None:
+                new_password = maskpass.advpass()
+                
+            elif choice == constants["TWO"] and new_name is None:
+                new_name = input(prompts["NEW_NAME"])
+                
+            elif choice == constants["THREE"] and new_phone is None:
+                new_phone = input(prompts["NEW_PHONE"])
+                
+            user.update_account(choice, new_password, new_name, new_phone)
+        
+        else:
+            print("WRONG_INPUT")
