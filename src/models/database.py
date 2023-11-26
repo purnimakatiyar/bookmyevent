@@ -96,4 +96,3 @@ class DBConnection:
             
 
 db = DBConnection()
-    

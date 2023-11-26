@@ -1,18 +1,21 @@
 from models.database import DBConnection
 from settings.config import queries, prompts
 from utils.encrypt import check_password
+from utils import logs
 import sys
 sys.path.append(r'C:\Users\pkatiyar\OneDrive - WatchGuard Technologies Inc\Desktop')
 
 class Authenticate:
     
-    def __init__(self, username = None, password = None):
+    def __init__(self, username = None, password = None) -> None:
         self.username = username
         self.password = password
         self.db = DBConnection()
 
     
-    def login(self):
+    def login(self) -> None:
+        '''Method for the login of user in the application'''
+        
         check_user = self.db.get_item(queries["SEARCH_EXIST_USER_IN_AUTHENTICATE"],(self.username,))
         if check_user is None:
             print(prompts["USERNAME_NOT_EXIST"])
@@ -22,8 +25,11 @@ class Authenticate:
                 print(prompts["LOGGED_IN"])
                 return self.get_role()
             else:
+                logs.wrong_credential()
                 print(prompts["WRONG_PASSWORD"])
                 return None
 
-    def get_role(self):
+    def get_role(self) ->str:
+        '''Method to get the role from the Authentication table'''
+        
         return self.db.get_item(queries["SEARCH_ROLE_IN_AUTHENTICATE"], (self.username,))[0]

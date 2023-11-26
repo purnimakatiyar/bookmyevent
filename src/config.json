@@ -32,15 +32,19 @@
         "UPDATE_EVENT_RATING": "UPDATE Events SET rating = ? WHERE event_name = ? AND user_id = ?",
         "UPDATE_EVENT_PRICE": "UPDATE Events SET price = ? WHERE event_name = ? AND user_id = ?",
         "UPDATE_EVENT_CATEGORY": "UPDATE Events SET category = ? WHERE event_name = ? AND user_id = ?",
-        "SEARCH_BY_EVENT_NAME": "SELECT * FROM Events WHERE event_name LIKE ?"
+        "SEARCH_BY_EVENT_NAME": "SELECT * FROM Events WHERE event_name LIKE ?",
+        "UPDATE_PASSWORD": "UPDATE Authenticate SET password = ? WHERE user_id = ?",
+        "UPDATE_NAME": "UPDATE UserDetails SET name = ? WHERE user_id = ?",
+        "UPDATE_PHONE": "UPDATE UserDetails SET phone = ? WHERE user_id = ?"
     },
 
     "menu":{
         "START_VIEW": "-------Welcome to Book My Event application-------\n1.Login \n2.Signup \n3.Exit",
-        "ADMIN_MENU": "\nEnter your choice: \n1. To add Manager \n2. To remove Manager \n3. Exit",
-        "MANAGER_MENU": "\nEnter your choice: \n1. To add Event \n2. To remove Event \n3. List Events \n4. To update Event \n5. Exit",
+        "ADMIN_MENU": "\nEnter your choice: \n1. To add Manager \n2. To remove Manager \n3. To update Account \n4. To login as customer \n5. Exit",
+        "MANAGER_MENU": "\nEnter your choice: \n1. To add Event \n2. To remove Event \n3. List Events \n4. To update Event \n5. To update Account \n6. Exit",
         "UPDATE_EVENT": "\nEnter your choice: \n1. To update Event name \n2. To update event date \n3. To update event rating \n4. To update event price \n5. To update event category",
-        "CUSTOMER_MENU": "\nEnter your choice: \n1. To list Events \n2. To view Event  \n3. To book Event \n4. To filter Events \n5. To search Event  \n6. To view booked Events \n7. Exit"
+        "CUSTOMER_MENU": "\nEnter your choice: \n1. To list Events \n2. To view Event  \n3. To book Event \n4. To filter Events \n5. To search Event  \n6. To view booked Events \n7. To update Account \n8. Exit",
+        "UPDATE_ACCOUNT": "\nEnter your choice: \n1. To update Password \n2. To update Name \n3. To update Phone"
     },
 
     "prompts":{
@@ -99,7 +103,18 @@
         "NEW_EVENT_PRICE": "\nEnter the new event price: ",
         "NEW_EVENT_CATEGORY": "\nEnter the new event category: ",
         "TICKET_STATUS": "\nThe number of tickets you want to book are not available.",
-        "PARTIAL_EVENT_NAME": "\nEnter the event name you want to search."
+        "PARTIAL_EVENT_NAME": "\nEnter the event name you want to search: ",
+        "UPDATED_PASSWORD": "\nEnter the new password: ",
+        "NEW_NAME": "\nEnter the new name: ",
+        "NEW_PHONE": "\nEnter the new phone: ",
+        "CHANGED_PASSWORD": "\nPassword changed successfully.",
+        "CHANGED_NAME": "\nName changed successfully.",
+        "CHANGED_PHONE": "\nPhone changed successfully.",
+        "CHANGED_EVENTNAME": "\nEvent Name changed successfully.",
+        "CHANGED_EVENTDATE": "\nEvent Date changed successfully.",
+        "CHANGED_EVENRATING": "\nEvent Rating changed successfully.",
+        "CHANGED_EVENTPRICE": "\nEvent Price changed successfully.",
+        "CHANGED_EVENTCATEGORY": "\nEvent category changed successfully."
     },
 
     "constants": {
@@ -113,6 +128,7 @@
         "FOUR": "4",
         "FIVE": "5",
         "SIX": "6",
-        "SEVEN": "7"
+        "SEVEN": "7",
+        "EIGHT": "8"
     }
 }
