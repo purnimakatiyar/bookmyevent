@@ -25,6 +25,8 @@ class User:
 
             
     def save_info(self):
+        '''Method to save the user details into database'''
+        
         hashed_password = hash_password(self.password)
         auth_details = (
             self.uuid,
@@ -44,6 +46,8 @@ class User:
         
             
     def get_user(self, username):
+        '''Method to get existing user in the database'''
+        
         return self.db.get_item(queries["SEARCH_EXIST_USER_IN_AUTHENTICATE"], (username,))
     
     def remove_manager(self, username: str) ->None:

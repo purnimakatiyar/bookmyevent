@@ -9,7 +9,10 @@ from utils.tableprint import list_event_table, booked_event_table
 
 class EventHelper:
     
+    
     def add_event(self, username) ->None:
+        """Method to add the event details"""
+        
         event_details = Input().add_event_input()
         user_id  = User().get_user_id(username)
         event = Event(
@@ -26,6 +29,8 @@ class EventHelper:
         
         
     def remove_event(self, username):
+        """Method to remove the event"""
+        
         event_name = Input().remove_event_input()
         user_id = User().get_user_id(username)
         event = Event(user_id = user_id, event_name = event_name)
@@ -37,6 +42,8 @@ class EventHelper:
           
           
     def view_event(self):
+        """Method to view a particular event"""
+        
         event_name = Input().view_event_input()
         event = Event(event_name = event_name)
         event_details = event.get_event()
@@ -54,6 +61,8 @@ class EventHelper:
             
           
     def list_events(self, username):
+        """Method to list the events added by a specific manager"""
+        
         user_id = User().get_user_id(username)
         event = Event(user_id = user_id)
         events = event.list_events()
@@ -64,12 +73,16 @@ class EventHelper:
             print("No events found for the user.")
         
     def list_all_events(self):
+        """Method to list all the events"""
+        
         event = Event()
         events = event.list_all_events()
         list_event_table(events)
         
         
     def update_event(self, username, choice):
+        """Method to update the event details"""
+        
         event = Event(user_id = User().get_user_id(username))
         update_event_details = Input().update_event_input(choice)
         if event.update_event(update_event_details[0],update_event_details[1], 
@@ -89,6 +102,8 @@ class EventHelper:
                 
                 
     def filter_event(self):
+        """Method to filter the event"""
+        
         filter_details = Input().filter_event_input()
         events = Event().filter_event(filter_details[0], filter_details[1])
         if events:
@@ -99,6 +114,8 @@ class EventHelper:
             
             
     def search_event(self):
+        """Method to search for the event"""
+        
         partial_name = Input().search_event_input()
         event = Event()
         events = event.search_event(partial_name)
@@ -109,6 +126,8 @@ class EventHelper:
             
             
     def view_booked_event(self, username):
+        """Method to view the booked event"""
+        
         user_id = User().get_user_id(username)
         booked_events = BookedEvents().view_booked_events(user_id)
         if booked_events:
@@ -119,7 +138,8 @@ class EventHelper:
             
             
     def book_event(self, username) ->None:
-        '''Method to book the event for customer'''
+        """Method to book the event for customer"""
+        
         user_id = User().get_user_id(username)
         book_event_details = Input().book_event_input()
         event_obj = Event(event_name = book_event_details[0])
@@ -136,7 +156,8 @@ class EventHelper:
             
             
     def update_ticket(self, tickets , event_name) ->None:
-        '''Method to update the tickets of the event which is booked'''
+        """Method to update the tickets of the event which is booked"""
+        
         event_obj = Event(event_name = event_name)
         current_ticket_qty = event_obj.get_ticket_qty()
         if current_ticket_qty is not None:

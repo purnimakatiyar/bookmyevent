@@ -8,6 +8,8 @@ from utils import logs
 class Menu:
     
     def navigate_check_role(self, details):
+        """Method to check for the role base showing menu for that user"""
+        
         if details[1] == constants["ADMIN"]:
             self.admin_menu(details[0])
             return
@@ -19,6 +21,8 @@ class Menu:
             return
         
     def start_view(self): 
+        """Method to show the starting view of the application and menu"""
+        
         while True:
             print(menu["START_VIEW"])
             choice = input()
@@ -40,6 +44,8 @@ class Menu:
             
     
     def admin_menu(self, username):
+        """Method to show the admin menu """
+        
         while True:
             print(menu["ADMIN_MENU"])
             choice = input()
@@ -59,6 +65,8 @@ class Menu:
 
 
     def manager_menu(self, username):
+        """Method to show the manager menu"""
+        
         while True:
             print(menu["MANAGER_MENU"])
             choice = input()
@@ -79,6 +87,8 @@ class Menu:
                 
 
     def update_event_menu(self, username):
+        """Method to show the update event menu"""
+        
         print(menu["UPDATE_EVENT"])
         while True:
             ch = input()
@@ -92,6 +102,8 @@ class Menu:
                 
             
     def update_account_menu(self, username):
+        """Method to show the update account menu"""
+        
         print(menu["UPDATE_ACCOUNT"])
         while True:
             ch = input()
@@ -104,6 +116,8 @@ class Menu:
               
               
     def customer_menu(self, username):
+        """Method to show the customer menu"""
+        
         while True:
             print(menu["CUSTOMER_MENU"])
             choice = input()

@@ -4,9 +4,13 @@ from utils.encrypt import check_password
 from utils.input import Input
 from utils import logs
 
+
 class AuthenticateHelper:
     
+    
     def login(self):
+        """Method to do the authentication login process"""
+        
         auth_details = Input().login_input()
         obj = Authenticate(username = auth_details[0], password = auth_details[1])
         user = obj.login()
@@ -23,6 +27,3 @@ class AuthenticateHelper:
                 logs.wrong_credential()
                 print(prompts["WRONG_PASSWORD"])
                 return None
-            
-            
-            
