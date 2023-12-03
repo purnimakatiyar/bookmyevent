@@ -6,6 +6,7 @@ from utils import logs
 class UserHelper:
     
     def signup(self, user_role):
+        """Method to do the signup process for a user"""
         
         signup_details = Input().signup_input()
         user = User(
@@ -23,6 +24,8 @@ class UserHelper:
             print(prompts["USER_ADDED"])
             
     def remove_manager(self):
+        """Method to remove the manager"""
+        
         username = Input().remove_manager_input()
         user = User().get_user(username)
         if user is None:
@@ -34,6 +37,8 @@ class UserHelper:
             
             
     def update_account(self, username, choice):
+        """Method to update the account"""
+        
         user = User(user_id = User().get_user_id(username),)
         update_acc_details = Input().update_account_input(choice)
         
@@ -44,4 +49,3 @@ class UserHelper:
                 print(prompts["CHANGED_NAME"])
             elif choice == constants["THREE"]:
                 print(prompts["CHANGED_PHONE"])
-        

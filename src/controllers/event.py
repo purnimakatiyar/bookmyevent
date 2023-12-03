@@ -43,9 +43,13 @@ class Event:
         
           
     def get_event_by_user(self):
+        '''Mehod to get the events added by a specific manager'''
+        
         return self.db.get_item(queries["SEARCH_EXISTING_EVENT"], (self.user_id, self.event_name,))
         
     def get_event(self):
+        '''Method to get all the events present in the the event table'''
+        
         return self.db.get_item(queries["SEARCH_EVENT"],  self.event_name)
         
         
@@ -69,6 +73,8 @@ class Event:
         return True   
             
     def get_ticket_qty(self):
+        '''Method to get the ticket quantity of a particular event'''
+        
         return self.db.get_item(queries["GET_TICKET_QTY"], self.event_name)
     
     
@@ -117,4 +123,3 @@ class Event:
         elif choice == constants["FIVE"]:
             self.db.update_item(queries["UPDATE_EVENT_CATEGORY"], (new_event_category, eventname, self.user_id))
             return True
-     

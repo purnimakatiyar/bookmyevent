@@ -8,6 +8,8 @@ class Input:
     
     
     def login_input(self):
+        """Method to take input details for login"""
+        
         username = input(prompts["AUTH_USERNAME"])
         password = maskpass.advpass()
         auth_details = (username, password)
@@ -15,6 +17,8 @@ class Input:
         
     
     def get_valid_input(self, prompt, validation_function):
+        """Method to take a valid input only"""
+          
         while True:
             user_input = input(prompt)
             if validation_function(user_input):
@@ -24,6 +28,8 @@ class Input:
          
                 
     def signup_input(self):
+        """Method to take input details for signup process"""
+        
         username = self.get_valid_input(prompts["USERNAME"], is_valid_username)
         password = check_valid_password(maskpass.advpass())
         name = self.get_valid_input(prompts["NAME"], is_valid_name)
@@ -32,10 +38,14 @@ class Input:
 
            
     def remove_manager_input(self):
+        """Method to take input for removing manager"""
+        
         return input(prompts["DELETE_MANAGER"])
         
     
     def add_event_input(self):
+        """Method to take input for adding an event"""
+        
         event_name = self.get_valid_input(prompts["EVENT_NAME"], validate_event_name)
         input_date = self.get_valid_input(prompts["EVENT_DATE"], validate_event_date)
         event_date = parser.parse(input_date).strftime('%Y-%m-%d'),
@@ -47,22 +57,30 @@ class Input:
 
     
     def remove_event_input(self):
+        """Method to take input for removing an event"""
+        
         event_name = input(prompts["REMOVE_EVENT"])
         return event_name
         
     
     def view_event_input(self):
+        """Method to take input for viewing a specific event"""
+        
         event_name = input(prompts["VIEW_EVENT"])
         return event_name
         
         
     def book_event_input(self):
+        """Method to take input for booking event"""
+        
         event_name = input(prompts["BOOK_EVENT"]),
         ticket_quantity = int(input(prompts["BOOK_EVENT_TICKETS"]))
         return (event_name, ticket_quantity)
  
         
     def filter_event_input(self):
+        """Method for taking input for filtering event"""
+        
         while True:
             filter_type = input(prompts["FILTER_TYPE"])
             if filter_type not in ["rating", "price", "category", "location"]:
@@ -73,11 +91,14 @@ class Input:
         
         
     def search_event_input(self):
+        """Method to take input for searching an event"""
+        
         partial_name = input(prompts["PARTIAL_EVENT_NAME"])
         return partial_name
         
     
     def update_event_input(self, choice):
+        """Method to take input for updating event"""
         
         existing_event_name = input(prompts["EXISTING_EVENT_NAME"])
         new_event_name = None 
@@ -100,6 +121,8 @@ class Input:
         
             
     def update_account_input(self, choice):
+        """Method to take input for updating account details"""
+        
         new_name = None
         new_password = None
         new_phone = None
