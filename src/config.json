@@ -8,7 +8,7 @@
         "DELETE_EVENT": "DELETE FROM Events WHERE user_id = ? AND event_name = ?",
         "UPDATE_PASSWORD_IN_AUTHENTICATE": "UPDATE Authenticate SET Security_code = ? WHERE username = ?",
         "SEARCH_EXISTING_USER_IN_AUTHENTICATE": "SELECT COUNT(*) FROM Authenticate WHERE username = ?",
-        "SEARCH_EXISTING_EVENT": "SELECT * FROM Events WHERE event_name = ?",
+        "SEARCH_EXISTING_EVENT": "SELECT * FROM Events WHERE user_id = ? AND event_name = ?",
         "SEARCH_PASSWORD_IN_AUTHENTICATE": "SELECT password FROM Authenticate WHERE username = ?",
         "SEARCH_USER_ID_IN_USERDETAILS": "SELECT user_id FROM UserDetails WHERE username = ?",
         "SEARCH_EXIST_USER_IN_AUTHENTICATE": "SELECT * FROM Authenticate WHERE username = ?",
@@ -95,7 +95,7 @@
         "UPDATE_EVENT_PRICE": "\nEnter the new event price: ",
         "UPDATE_EVENT_CATEGORY": "\nEnter the new event category: ",
         "EXISTING_EVENT_NAME": "\nEnter the event name you want to update: ",
-        "CANNOT_REMOVE_EVENT": "\nEvent cannot be removed as you are not allowed to remove another ongoing event.",
+        "NO_EVENT_BY_USER": "\nYou hadn't added this event, so can't remove.",
         "INVALID_INPUT": "\nInvalid input. Please enter a valid value.",
         "NEW_EVENT_NAME": "\nEnter the new event name: ",
         "NEW_EVENT_DATE": "\nEnter the new event date: ",
@@ -114,11 +114,13 @@
         "CHANGED_EVENTDATE": "\nEvent Date changed successfully.",
         "CHANGED_EVENRATING": "\nEvent Rating changed successfully.",
         "CHANGED_EVENTPRICE": "\nEvent Price changed successfully.",
-        "CHANGED_EVENTCATEGORY": "\nEvent category changed successfully."
+        "CHANGED_EVENTCATEGORY": "\nEvent category changed successfully.",
+        "NO_TICKETS": "\nNo tickets found."
     },
 
     "constants": {
-        "BOOKMYEVENT_DB": "C:\\Users\\pkatiyar\\OneDrive - WatchGuard Technologies Inc\\Desktop\\Minor project\\user.db",
+        "BOOKMYEVENT_DB": "C:\\Users\\pkatiyar\\OneDrive - WatchGuard Technologies Inc\\Desktop\\Myyyy proj\\src\\user.db",
+        
         "CUSTOMER": "Customer",
         "MANAGER": "Manager",
         "ADMIN": "Admin",

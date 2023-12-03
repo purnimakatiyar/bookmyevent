@@ -1,5 +1,7 @@
-from helpers.input import Input
+from helpers.authentication_helper import AuthenticateHelper
+from helpers.user_helper import UserHelper
 from controllers.event import Event
+from helpers.event_helper import EventHelper
 from settings.config import constants, menu, prompts
 from utils import logs
 
@@ -21,7 +23,7 @@ class Menu:
             print(menu["START_VIEW"])
             choice = input()
             if choice == constants["ONE"]:
-                details = Input().login_input()
+                details = AuthenticateHelper().login()
                 if details:
                     self.navigate_check_role(details)    
                 else:
@@ -29,7 +31,7 @@ class Menu:
                     continue
             elif choice == constants["TWO"]:
                 user_role = constants["CUSTOMER"]
-                Input().signup_input(user_role)
+                UserHelper().signup(user_role)
             elif choice == constants["THREE"]:
                 logs.exit_app()
                 break
@@ -43,9 +45,9 @@ class Menu:
             choice = input()
             if choice == constants["ONE"]:
                 user_role = constants["MANAGER"]
-                Input().signup_input(user_role)
+                UserHelper().signup(user_role)
             elif choice == constants["TWO"]:
-                Input().remove_manager_input()
+                UserHelper().remove_manager()
             elif choice == constants["THREE"]:
                 self.update_account_menu(username)
             elif choice == constants["FOUR"]:
@@ -61,11 +63,11 @@ class Menu:
             print(menu["MANAGER_MENU"])
             choice = input()
             if choice == constants["ONE"]:
-                Input().add_event_input(username)
+                EventHelper().add_event(username)
             elif choice == constants["TWO"]:
-                Input().remove_event_input(username)
+                EventHelper().remove_event(username)
             elif choice == constants["THREE"]:
-                Input().list_event_input(username)
+                EventHelper().list_events(username)
             elif choice == constants["FOUR"]:
                 self.update_event_menu(username)
             elif choice == constants["FIVE"]:
@@ -76,38 +78,47 @@ class Menu:
                 print(prompts["WRONG_INPUT"])
                 
 
-    def update_event_menu(self, user):
+    def update_event_menu(self, username):
         print(menu["UPDATE_EVENT"])
-        ch = input()
-        if ch in constants.values():
-            Input().update_event_input(user, ch)
-        else:
-            print(prompts["WRONG_INPUT"])
+        while True:
+            ch = input()
+            if ch in constants.values():
+                EventHelper().update_event(username, ch)
+                return
+            else:
+                print(prompts["WRONG_INPUT"])
+                print(menu["UPDATE_EVENT"])
+                
+                
             
-    def update_account_menu(self, user):
+    def update_account_menu(self, username):
         print(menu["UPDATE_ACCOUNT"])
-        ch = input()
-        if ch in constants.values():
-            Input().update_account_input(user, ch)
-        else:
-            print(prompts["WRONG_INPUT"])
+        while True:
+            ch = input()
+            if ch in constants.values():
+                UserHelper().update_account(username, ch)
+                return
+            else:
+                print(prompts["WRONG_INPUT"])
+                print(menu["UPDATE_ACCOUNT"])
+              
               
     def customer_menu(self, username):
         while True:
             print(menu["CUSTOMER_MENU"])
             choice = input()
             if choice == constants["ONE"]:
-                Event().list_all_events()
+                EventHelper().list_all_events()
             elif choice == constants["TWO"]:
-                Input().view_event_input()
+                EventHelper().view_event()
             elif choice == constants["THREE"]:
-                Input().book_event_input(username)
+                EventHelper().book_event(username)
             elif choice == constants["FOUR"]:
-                Input().filter_event_input()
+                EventHelper().filter_event()
             elif choice == constants["FIVE"]:
-                Input().search_event_input()
+                EventHelper().search_event()
             elif choice == constants["SIX"]:
-                Input().view_booked_event_input(username)
+                EventHelper().view_booked_event(username)
             elif choice == constants["SEVEN"]:
                 self.update_account_menu(username)
             elif choice == constants["EIGHT"]:

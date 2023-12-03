@@ -44,6 +44,7 @@ class DBConnection:
     
     
     def get_items(self, query, data):
+        response = None
         with db as cursor:
             try:
                 response = cursor.execute(query, data).fetchall()
@@ -59,16 +60,16 @@ class DBConnection:
                 events = cursor.execute(query).fetchall()
             except sqlite3.Error as error:
                 print(error)
-        return events
+            return events
 
-    def get_events(self, query, data):
-        response = None
-        with self as cursor:
-            try:
-                response = cursor.execute(query, data).fetchall()
-            except sqlite3.Error as error:
-                print(error)
-        return response
+    # def get_events(self, query, data):
+    #     response = None
+    #     with self as cursor:
+    #         try:
+    #             response = cursor.execute(query, data).fetchall()
+    #         except sqlite3.Error as error:
+    #             print(error)
+    #     return response
     
     
     def insert_item(self, query, data):
