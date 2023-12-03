@@ -1,12 +1,13 @@
-from bcrypt import checkpw, hashpw, gensalt
+import hashlib
 
+def hash_password(password):
+        if password is None:
+                print("Password cannot be None")
+        else:
+                hashed_password = hashlib.sha256(password.encode()).hexdigest()
+                return hashed_password
 
 def check_password(password, hashed_password):
-        if checkpw(password.encode('utf8'), hashed_password):
-            return True
+        if hash_password(password) == hashed_password:
+                return True
         return False
-    
-def hash_password(password):
-        salt = gensalt()
-        hashed_password = hashpw(password.encode('utf-8'), salt)
-        return hashed_password

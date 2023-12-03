@@ -4,7 +4,9 @@ queries = None
 prompts = None
 menu = None
 
-with open("config.json", "r") as file:
+
+filepath = "C:/Users/pkatiyar/OneDrive - WatchGuard Technologies Inc/Desktop/Myyyy proj/src/config.json"
+with open(filepath, "r") as file:
     get_data = json.load(file)
     queries = get_data["queries"]
     menu = get_data["menu"]

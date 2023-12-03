@@ -1,7 +1,7 @@
-from settings.config import queries, prompts
+from settings.config import queries
 from models.database import DBConnection
 from utils.uuid_generator import generate_uuid
-from utils.tableprint import booked_event_table
+
 
 class BookedEvents:
     
@@ -17,10 +17,4 @@ class BookedEvents:
     def view_booked_events(self, user_id: str) -> tuple:
         '''This method is for viewing or listing all the events that the customer has booked'''
         
-        booked_events = self.db.get_items(queries["GET_BOOKED_EVENTS"], (user_id,))
-        
-        if booked_events:
-            booked_event_table(booked_events)
-            return
-        else:
-            print(prompts["NO_BOOKED_EVENTS"])
+        return self.db.get_items(queries["GET_BOOKED_EVENTS"], (user_id,))

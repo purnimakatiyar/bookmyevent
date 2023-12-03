@@ -1,35 +1,21 @@
 from models.database import DBConnection
-from settings.config import queries, prompts
-from utils.encrypt import check_password
-from utils import logs
+from settings.config import queries
 import sys
 sys.path.append(r'C:\Users\pkatiyar\OneDrive - WatchGuard Technologies Inc\Desktop')
 
 class Authenticate:
     
-    def __init__(self, username = None, password = None) -> None:
-        self.username = username
-        self.password = password
+    def __init__(self, **auth_details) -> None:
+        self.username = auth_details.get('username')
+        self.password = auth_details.get('password')
         self.db = DBConnection()
 
     
     def login(self) -> None:
-        '''Method for the login of user in the application'''
+        """Method for the login of user in the application"""
+        return self.db.get_item(queries["SEARCH_EXIST_USER_IN_AUTHENTICATE"],(self.username,))
         
-        check_user = self.db.get_item(queries["SEARCH_EXIST_USER_IN_AUTHENTICATE"],(self.username,))
-        if check_user is None:
-            print(prompts["USERNAME_NOT_EXIST"])
-        else:
-            stored_hashed_password = check_user[2]
-            if check_password(self.password, stored_hashed_password):
-                print(prompts["LOGGED_IN"])
-                return self.get_role()
-            else:
-                logs.wrong_credential()
-                print(prompts["WRONG_PASSWORD"])
-                return None
-
+        
     def get_role(self) ->str:
-        '''Method to get the role from the Authentication table'''
-        
+        """Method to get the role from the Authentication table"""
         return self.db.get_item(queries["SEARCH_ROLE_IN_AUTHENTICATE"], (self.username,))[0]
